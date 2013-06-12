@@ -15,6 +15,76 @@ public class Exec {
 		DeOut.disp(my.countTriple("a"));
 		DeOut.disp("------end output-------");
 	}
+		/*
+	 * Given a string, return the longest substring 
+	 * that appears at both the beginning and end of 
+	 * the string without overlapping. For example, 
+	 * sameEnds("abXab") is "ab". 
+	 * 
+	 * sameEnds("abXYab") → "ab"
+	 * sameEnds("xx") → "x"
+	 * sameEnds("xxx") → "x"
+	 */
+	public String sameEnds(String string) {
+		int limit = string.length()%2==0? string.length()/2:string.length()/2+1;
+		String front = string.substring(0,string.length()/2);
+		String tail = string.substring(limit);
+		
+		if(tail.equals(front)){
+			return front;
+		}else{
+			int i = 1;
+			while(i<string.length()/2){
+				
+				if(tail.substring(i).equals(front.substring(0, front.length()-i))){
+					return tail.substring(i);
+				}
+				i++;
+			}
+		}
+		
+		return "";
+	}
+	/*
+	 * Given a string, return the sum of the digits 0-9 
+	 * that appear in the string, ignoring all other characters. 
+	 * Return 0 if there are no digits in the string. 
+	 * (Note: Character.isDigit(char) tests 
+	 * if a char is one of the chars '0', '1', .. '9'. 
+	 * Integer.parseInt(string) converts a string to an int.) 
+	 * 
+	 * sumDigits("aa1bc2d3") → 6
+	 * sumDigits("aa11b33") → 8
+	 * sumDigits("Chocolate") → 0
+	 */
+	public int sumDigits(String str) {
+		int sum =0;
+		for(int i=0;i<str.length();i++){
+			//DeOut.disp(str.charAt(i)+" => "+ Character.isDigit(str.charAt(i)));
+			if(Character.isDigit(str.charAt(i))){
+				sum += Integer.parseInt(Character.toString(str.charAt(i)));
+			}
+		}
+		return sum;
+	}
+	/*
+	 * We'll say that a "triple" in a string is a char appearing three times in a row. 
+	 * Return the number of triples in the given string. 
+	 * The triples may overlap. 
+	 * 
+	 * countTriple("abcXXXabc") → 1
+	 * countTriple("xxxabyyyycd") → 3
+	 * countTriple("a") → 0
+	 */
+	public int countTriple(String str) {
+		int count = 0;
+		for(int i=0;i<str.length()-2;i++){
+			if(str.charAt(i)==str.charAt(i+1)&&str.charAt(i)==str.charAt(i+2)){
+				count++;
+			}
+		}
+		return count;
+	}
 	/*
 	 * We'll say that a "triple" in a string is a char appearing three times in a row. 
 	 * Return the number of triples in the given string. 
