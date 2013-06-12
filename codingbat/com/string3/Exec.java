@@ -9,13 +9,8 @@ public class Exec {
 	 */
 	public static void main(String[] args) {
 		Exec my = new Exec();
-		DeOut.disp("--------output---------");
-		DeOut.disp(my.countTriple("abcXXXabc"));
-		DeOut.disp(my.countTriple("xxxabyyyycd"));
-		DeOut.disp(my.countTriple("a"));
-		DeOut.disp("------end output-------");
 	}
-		/*
+	/*
 	 * Given a string, return the longest substring 
 	 * that appears at both the beginning and end of 
 	 * the string without overlapping. For example, 
