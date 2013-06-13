@@ -6,12 +6,6 @@ public class Exec {
 
 	public static void main(String[] args) {
 		Exec my = new Exec();
-		
-		DeOut.disp("--------output---------");
-		DeOut.disp(my.evenlySpaced(2, 4, 6));
-		DeOut.disp(my.evenlySpaced(4, 6, 2));
-		DeOut.disp(my.evenlySpaced(4, 6, 3));
-		DeOut.disp("------end output-------");
 	}
 	/*
 	 * We want make a package of goal kilos of chocolate. 
