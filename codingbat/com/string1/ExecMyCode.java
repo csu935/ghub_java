@@ -4,14 +4,7 @@ import lib.DeOut;
 public class ExecMyCode {
 
 	public static void main(String[] args) {
-		ExecMyCode my = new ExecMyCode();
 		
-		DeOut.disp("--------output---------");
-		DeOut.disp(my.withoutX2("xHi"));
-		DeOut.disp(my.withoutX2("Hxi"));
-		DeOut.disp(my.withoutX2("Hi"));
-		DeOut.disp(my.withoutX2("x"));
-		DeOut.disp("------end output-------");
 	}
 	/*
 	 * Given a string, 
