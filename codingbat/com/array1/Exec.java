@@ -6,14 +6,7 @@ public class Exec {
 
 	public static void main(String[] args) {
 		Exec my = new Exec();
-		DeOut.disp("--------output---------");
-		DeOut.dispNList(my.front11(new int[]{1, 2, 3}, new int[]{7, 9, 8}));
-		DeOut.dispNList(my.front11(new int[]{1}, new int[]{2}));
-		DeOut.dispNList(my.front11(new int[]{1, 7}, new int[]{}));
 		
-		DeOut.dispNList(my.front11(new int[]{3}, new int[]{1, 4, 1, 9}));
-		DeOut.dispNList(my.front11(new int[]{}, new int[]{2, 8}));
-		DeOut.disp("------end output-------");
 	}
 	/*
 	 * Given 2 int arrays, a and b, of any length, 
