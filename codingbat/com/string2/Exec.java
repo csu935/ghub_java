@@ -5,12 +5,7 @@ import lib.DeOut;
 public class Exec {
 
 	public static void main(String[] args) {
-		Exec my = new Exec();
-		DeOut.disp("--------output---------");
-		DeOut.disp(my.sameStarChar("xy*yzz"));
-		DeOut.disp(my.sameStarChar("xy*zzz"));
-		DeOut.disp(my.sameStarChar("*xa*az"));
-		DeOut.disp("------end output-------");
+		
 	}
 	/*
 	 * Returns true if for every '*' (star) in the string, 
