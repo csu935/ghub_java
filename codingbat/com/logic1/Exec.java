@@ -6,12 +6,7 @@ public class Exec {
 
 	public static void main(String[] args) {
 		Exec my = new Exec();
-		DeOut.disp("--------output---------");
-		DeOut.disp(my.sumLimit(2, 3));
-		DeOut.disp(my.sumLimit(8, 3));
-		DeOut.disp(my.sumLimit(8, 1));
 		
-		DeOut.disp("------end output-------");
 	}
 	/*
 	 * Given 2 non-negative ints, a and b, return their sum, 
