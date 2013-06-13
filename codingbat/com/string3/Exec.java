@@ -10,6 +10,7 @@ public class Exec {
 	public static void main(String[] args) {
 		Exec my = new Exec();
 	}
+	
 	/*
 	 * Given a string, look for a mirror image (backwards) string 
 	 * at both the beginning and end of the given string. 
@@ -23,7 +24,20 @@ public class Exec {
 	 * mirrorEnds("aba") → "aba"
 	 */
 	public String mirrorEnds(String string) {
-		return "";
+		String toRight = "";
+		String toLeft = "";
+		int i = 0;
+		while(i<string.length()){
+			toRight += string.charAt(i);
+			toLeft += string.charAt(string.length()-1-i);
+			if(toRight.equals(toLeft)){
+				i++;
+			}else{
+				toRight = toRight.substring(0, toRight.length()-1);
+				break;
+			}
+		}
+		return toRight;
 	}
 	
 	/*
