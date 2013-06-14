@@ -12,6 +12,42 @@ public class Exec {
 	}
 	
 	/*
+	 * Given a string, return the length of the largest "block" 
+	 * in the string. A block is a run of adjacent chars that are the same. 
+	 * 
+	 * maxBlock("hoopla") → 2
+	 * maxBlock("abbCCCddBBBxx") → 3
+	 * maxBlock("") → 0
+	 * 
+	 * maxBlock("xyz") → 1
+	 * maxBlock("xxyz") → 2
+	 * maxBlock("xyzz") → 2
+	 * maxBlock("XX2222BBBbbXX2222") → 4
+	 * maxBlock("XXBBBbbxxXXXX") → 4
+	 */
+	public int maxBlock(String str) {
+		
+		if(str.length()==0) return 0;
+		int maxBlockNum = 1;
+		int currentSecNum = 1;
+		
+		String currentBlockString= "";
+		for(int i=0;i<str.length();i++){
+			
+			if(Character.toString(str.charAt(i)).equals(currentBlockString)){
+				currentSecNum++;
+				maxBlockNum = Math.max(maxBlockNum, currentSecNum);
+				//DeOut.disp("Now=> "+maxBlockNum);
+			}else{
+				currentSecNum = 1;
+				currentBlockString = str.substring(i, i+1);
+			}
+		}
+		
+		return maxBlockNum;
+	}
+	
+	/*
 	 * Given a string, look for a mirror image (backwards) string 
 	 * at both the beginning and end of the given string. 
 	 * In other words, zero or more characters at the very begining 
