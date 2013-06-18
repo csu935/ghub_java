@@ -12,6 +12,56 @@ public class Exec {
     DeOut.disp("------end output-------");
   }
   /*
+   * Given an array of ints, return true
+   * if it contains no 1's or it contains no 4's.
+   *
+   * no14({1, 2, 3}) → true
+   * no14({1, 2, 3, 4}) → false
+   * no14({2, 3, 4}) → true
+   */
+  public boolean no14(int[] nums) {
+    int one = 0;
+    int four = 0;
+    for(int i=0;i<nums.length;i++){
+      if(nums[i]==1) one++;
+      if(nums[i]==4) four++;
+    }
+    return (one==0 || four==0);
+  }
+  /*
+   * Given a number n, create and return a new string array
+   * of length n, containing the strings "0", "1" "2" .. through n-1.
+   * N may be 0, in which case just return a length 0 array.
+   * Note: String.valueOf(xxx) will make the String form of most types.
+   * The syntax to make a new string array is:
+   * new String[desired_length]  (See also: FizzBuzz Code)
+   *
+   * fizzArray2(4) → {"0", "1", "2", "3"}
+   * fizzArray2(10) → {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+   * fizzArray2(2) → {"0", "1"}
+   */
+  public String[] fizzArray2(int n) {
+    String[] result = new String[n];
+    if(n==0) return result;
+    for(int i=0;i<n;i++){
+      result[i] = String.valueOf(i);
+    }
+    return result;
+  }
+  /*
+   * Given an array of ints, return true if every element is a 1 or a 4.
+   *
+   * only14({1, 4, 1, 4}) → true
+   * only14({1, 4, 2, 4}) → false
+   * only14({1, 1}) → true
+   */
+  public boolean only14(int[] nums) {
+    for(int i=0;i<nums.length;i++){
+      if(!(nums[i]==1 || nums[i]==4)) return false;
+    }
+    return true;
+  }
+  /*
    * Given a number n, create and return a new int array of length n,
    * containing the numbers 0, 1, 2, ... n-1. The given n may be 0,
    * in which case just return a length 0 array.
