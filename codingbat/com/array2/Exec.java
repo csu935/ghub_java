@@ -12,6 +12,26 @@ public class Exec {
     DeOut.disp("------end output-------");
   }
   /*
+   * Given an array of ints, return true if the array contains
+   * either 3 even or 3 odd values all next to each other.
+   *
+   * modThree({2, 1, 3, 5}) → true
+   * modThree({2, 1, 2, 5}) → false
+   * modThree({2, 4, 2, 5}) → true
+   * modThree({9, 7, 2, 9}) → false
+   * modThree({9, 7, 2, 9, 2, 2}) → false
+   * modThree({1, 2, 1, 2, 1}) → false
+   */
+  public boolean modThree(int[] nums) {
+    for(int i=0;i<nums.length-2;++i){
+      int mod = nums[i]%2;
+      if(nums[i+1]%2==mod && nums[i+2]%2==mod){
+        return true;
+      }
+    }
+    return false;
+  }
+  /*
    * Given an array of ints, return true if there is a 1
    * in the array with a 2 somewhere later in the array.
    *
