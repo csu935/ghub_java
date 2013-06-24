@@ -12,6 +12,42 @@ public class Exec {
     DeOut.disp("------end output-------");
   }
   /*
+   * Given an array of ints, return true 
+	 * if every 2 that appears in the array is next to another 2. 
+	 * 
+	 * twoTwo({4, 2, 2, 3}) → true
+	 * twoTwo({2, 2, 4}) → true
+	 * twoTwo({2, 2, 4, 2}) → false
+	 * 
+	 * twoTwo({1, 3, 4}) → true
+	 * twoTwo({2, 2, 7, 2, 1}) → false
+	 * twoTwo({1}) → true
+	 * twoTwo({}) → true
+	 */
+	public boolean twoTwo(int[] nums) {
+		if(nums.length==0) return true;
+		if(nums.length==1){
+			if(nums[0]==2) return false;
+			else return true;
+		}
+		
+		boolean isAllTwoTwo = true;
+		
+		for(int i=0;i<nums.length-1;++i){
+			if(nums[i]==2){
+				if(nums[i+1]==2) {
+					isAllTwoTwo = true;
+					i++;
+				}else {
+					isAllTwoTwo = false;
+				}
+			}
+		}
+		if(nums[nums.length-1]==2 && nums[nums.length-2]!=2) isAllTwoTwo = false;
+		return isAllTwoTwo;
+	}
+  
+  /*
    * Given an array of ints, return true if the value 3 appears
    * in the array exactly 3 times, and no 3's are next to each other.
    *
