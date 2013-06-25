@@ -12,12 +12,28 @@ public class Exec {
     DeOut.disp("------end output-------");
   }
   /*
-   * Return true if the group of N numbers at the start and end 
-   * of the array are the same. For example, 
-   * with {5, 6, 45, 99, 13, 5, 6}, 
-   * the ends are the same for n=0 and n=2, and false for n=1 and n=3. 
-   * You may assume that n is in the range 0..nums.length inclusive. 
-   * 
+   * Return true if the array contains, somewhere,
+   * three increasing adjacent numbers like .... 4, 5, 6, ... or 23, 24, 25.
+   *
+   * tripleUp({1, 4, 5, 6, 2}) → true
+   * tripleUp({1, 2, 3}) → true
+   * tripleUp({1, 2, 4}) → false
+   */
+  public boolean tripleUp(int[] nums) {
+    if(nums.length<3) return false;
+    for(int i=0;i<nums.length-2;++i){
+      if(nums[i+1]==nums[i]+1 && nums[i+2]==nums[i]+2) return true;
+    }
+    return false;
+  }
+
+  /*
+   * Return true if the group of N numbers at the start and end
+   * of the array are the same. For example,
+   * with {5, 6, 45, 99, 13, 5, 6},
+   * the ends are the same for n=0 and n=2, and false for n=1 and n=3.
+   * You may assume that n is in the range 0..nums.length inclusive.
+   *
    * sameEnds({5, 6, 45, 99, 13, 5, 6}, 1) → false
    * sameEnds({5, 6, 45, 99, 13, 5, 6}, 2) → true
    * sameEnds({5, 6, 45, 99, 13, 5, 6}, 3) → false
@@ -31,13 +47,13 @@ public class Exec {
     return true;
   }
   /*
-   * Given an array of ints, return true 
-   * if every 2 that appears in the array is next to another 2. 
-   * 
+   * Given an array of ints, return true
+   * if every 2 that appears in the array is next to another 2.
+   *
    * twoTwo({4, 2, 2, 3}) → true
    * twoTwo({2, 2, 4}) → true
    * twoTwo({2, 2, 4, 2}) → false
-   * 
+   *
    * twoTwo({1, 3, 4}) → true
    * twoTwo({2, 2, 7, 2, 1}) → false
    * twoTwo({1}) → true
@@ -49,9 +65,9 @@ public class Exec {
       if(nums[0]==2) return false;
       else return true;
     }
-    
+
     boolean isAllTwoTwo = true;
-    
+
     for(int i=0;i<nums.length-1;++i){
       if(nums[i]==2){
         if(nums[i+1]==2) {
