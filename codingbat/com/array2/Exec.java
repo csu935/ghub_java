@@ -7,9 +7,37 @@ public class Exec {
    * @param args
    */
   public static void main(String[] args) {
-    Exec my = new Exec();
-    DeOut.disp("--------output---------");
-    DeOut.disp("------end output-------");
+  }
+
+  /*
+   * For each multiple of 10 in the given array,
+   * change all the values following it to be that multiple of 10,
+   * until encountering another multiple of 10.
+   * So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
+   *
+   * tenRun({2, 10, 3, 4, 20, 5}) → {2, 10, 10, 10, 20, 20}
+   * tenRun({10, 1, 20, 2}) → {10, 10, 20, 20}
+   * tenRun({10, 1, 9, 20}) → {10, 10, 10, 20}
+   *
+   * tenRun({1, 2, 50, 1}) → {1, 2, 50, 50}
+   * tenRun({}) → {}
+   * tenRun({1, 2}) → {1, 2}
+   */
+  public int[] tenRun(int[] nums) {
+    if(nums.length==0) return nums;
+    int[] converted = new int[nums.length];
+    int substituteTen = nums[0];
+    for(int i=0; i<nums.length; i++){
+
+      if(nums[i]%10==0){
+        substituteTen = nums[i];
+        converted[i] = nums[i];
+      }else{
+        substituteTen = (substituteTen%10==0)? substituteTen:nums[i];
+        converted[i] = substituteTen;
+      }
+    }
+    return converted;
   }
 
   /*
