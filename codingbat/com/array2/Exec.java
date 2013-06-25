@@ -12,41 +12,59 @@ public class Exec {
     DeOut.disp("------end output-------");
   }
   /*
+   * Return true if the group of N numbers at the start and end 
+   * of the array are the same. For example, 
+   * with {5, 6, 45, 99, 13, 5, 6}, 
+   * the ends are the same for n=0 and n=2, and false for n=1 and n=3. 
+   * You may assume that n is in the range 0..nums.length inclusive. 
+   * 
+   * sameEnds({5, 6, 45, 99, 13, 5, 6}, 1) → false
+   * sameEnds({5, 6, 45, 99, 13, 5, 6}, 2) → true
+   * sameEnds({5, 6, 45, 99, 13, 5, 6}, 3) → false
+   */
+  public boolean sameEnds(int[] nums, int len) {
+    int endPos = nums.length-1-(len-1);
+    for(int i=0; i<len;i++){
+      if(nums[i]!=nums[endPos]) return false;
+      endPos++;
+    }
+    return true;
+  }
+  /*
    * Given an array of ints, return true 
-	 * if every 2 that appears in the array is next to another 2. 
-	 * 
-	 * twoTwo({4, 2, 2, 3}) → true
-	 * twoTwo({2, 2, 4}) → true
-	 * twoTwo({2, 2, 4, 2}) → false
-	 * 
-	 * twoTwo({1, 3, 4}) → true
-	 * twoTwo({2, 2, 7, 2, 1}) → false
-	 * twoTwo({1}) → true
-	 * twoTwo({}) → true
-	 */
-	public boolean twoTwo(int[] nums) {
-		if(nums.length==0) return true;
-		if(nums.length==1){
-			if(nums[0]==2) return false;
-			else return true;
-		}
-		
-		boolean isAllTwoTwo = true;
-		
-		for(int i=0;i<nums.length-1;++i){
-			if(nums[i]==2){
-				if(nums[i+1]==2) {
-					isAllTwoTwo = true;
-					i++;
-				}else {
-					isAllTwoTwo = false;
-				}
-			}
-		}
-		if(nums[nums.length-1]==2 && nums[nums.length-2]!=2) isAllTwoTwo = false;
-		return isAllTwoTwo;
-	}
-  
+   * if every 2 that appears in the array is next to another 2. 
+   * 
+   * twoTwo({4, 2, 2, 3}) → true
+   * twoTwo({2, 2, 4}) → true
+   * twoTwo({2, 2, 4, 2}) → false
+   * 
+   * twoTwo({1, 3, 4}) → true
+   * twoTwo({2, 2, 7, 2, 1}) → false
+   * twoTwo({1}) → true
+   * twoTwo({}) → true
+   */
+  public boolean twoTwo(int[] nums) {
+    if(nums.length==0) return true;
+    if(nums.length==1){
+      if(nums[0]==2) return false;
+      else return true;
+    }
+    
+    boolean isAllTwoTwo = true;
+    
+    for(int i=0;i<nums.length-1;++i){
+      if(nums[i]==2){
+        if(nums[i+1]==2) {
+          isAllTwoTwo = true;
+          i++;
+        }else {
+          isAllTwoTwo = false;
+        }
+      }
+    }
+    if(nums[nums.length-1]==2 && nums[nums.length-2]!=2) isAllTwoTwo = false;
+    return isAllTwoTwo;
+  }
   /*
    * Given an array of ints, return true if the value 3 appears
    * in the array exactly 3 times, and no 3's are next to each other.
