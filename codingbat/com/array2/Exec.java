@@ -9,6 +9,47 @@ public class Exec {
   public static void main(String[] args) { }
 
   /*
+   * Return a version of the given array where all the 10's have been removed.
+   * The remaining elements should shift left towards the start of the array as needed,
+   * and the empty spaces a the end of the array should be 0.
+   * So {1, 10, 10, 2} yields {1, 2, 0, 0}.
+   * You may modify and return the given array or make a new array.
+   *
+   * withoutTen({1, 10, 10, 2}) → {1, 2, 0, 0}
+   * withoutTen({10, 2, 10}) → {2, 0, 0}
+   * withoutTen({1, 99, 10}) → {1, 99, 0}
+   *
+   * withoutTen({10, 13, 10, 14}) → {13, 14, 0, 0}
+   * withoutTen({10, 13, 10, 14, 10}) → {13, 14, 0, 0, 0}
+   */
+  public int[] withoutTen(int[] nums) {
+    int endIndex = nums.length-1;
+    for(int n=0;n<nums.length;n++){
+      int t = nums[endIndex];
+      if(t==10){
+        nums[endIndex]=0;
+      }else{
+        for(int i=0;i<endIndex;i++){
+          if(nums[i]==10){
+            // Replace
+            nums[i] = t;
+            t = nums[i+1];
+            // compare
+            if(nums[i]>nums[i+1]){
+              nums[i+1] = nums[i];
+              nums[i] = t;
+            }
+            nums[endIndex] = 0;
+            break;
+          }
+        }
+      }
+
+      endIndex--;
+    }
+    return nums;
+  }
+  /*
    * Return an array that contains the exact same numbers
    * as the given array, but rearranged so that
    * all the zeros are grouped at the start of the array.
@@ -30,12 +71,12 @@ public class Exec {
           // 下から上に順番に比較します
             for(int j=nums.length-1;j>i;j--){
               // 上の方が大きいときは互いに入れ替えます
-              // マイナス値を考慮して２乗する
-          if(Math.pow(nums[j],2)<Math.pow(nums[j-1],2)){
-            int t=nums[j];
-            nums[j]=nums[j-1];
-            nums[j-1]=t;
-          }
+              // 今回の場合は、マイナス値を考慮して２乗する
+              if(Math.pow(nums[j],2)<Math.pow(nums[j-1],2)){
+                int t=nums[j];
+                nums[j]=nums[j-1];
+                nums[j-1]=t;
+              }
           }
         }
     return nums;
