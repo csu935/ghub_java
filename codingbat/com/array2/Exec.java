@@ -7,19 +7,52 @@ public class Exec {
    * @param args
    */
   public static void main(String[] args) { }
-  
+
   /*
-   * We'll say that an element in an array is "alone" 
-	 * if there are values before and after it, 
-	 * and those values are different from it. 
-	 * Return a version of the given array where every 
-	 * instance of the given value which is alone is replaced by 
-	 * whichever value to its left or right is larger. 
-	 * 
+   * Return an array that contains the exact same numbers
+   * as the given array, but rearranged so that
+   * all the zeros are grouped at the start of the array.
+   * The order of the non-zero numbers does not matter.
+   * So {1, 0, 0, 1} becomes {0 ,0, 1, 1}.
+   * You may modify and return the given array or make a new array.
+   *
+   * zeroFront({1, 0, 0, 1}) → {0, 0, 1, 1}
+   * zeroFront({0, 1, 1, 0, 1}) → {0, 0, 1, 1, 1}
+   * zeroFront({1, 0}) → {0, 1}
+   *
+   * zeroFront({-1, 0, 0, -1, 0}) → {0, 0, 0, -1, -1}
+   * zeroFront({0, -3, 0, -3}) → {0, 0, -3, -3}
+   *
+   */
+  public int[] zeroFront(int[] nums) {
+    // Bubble sort
+     for(int i=0;i<nums.length-1;i++){
+          // 下から上に順番に比較します
+            for(int j=nums.length-1;j>i;j--){
+              // 上の方が大きいときは互いに入れ替えます
+              // マイナス値を考慮して２乗する
+          if(Math.pow(nums[j],2)<Math.pow(nums[j-1],2)){
+            int t=nums[j];
+            nums[j]=nums[j-1];
+            nums[j-1]=t;
+          }
+          }
+        }
+    return nums;
+  }
+
+  /*
+   * We'll say that an element in an array is "alone"
+	 * if there are values before and after it,
+	 * and those values are different from it.
+	 * Return a version of the given array where every
+	 * instance of the given value which is alone is replaced by
+	 * whichever value to its left or right is larger.
+	 *
 	 * notAlone({1, 2, 3}, 2) → {1, 3, 3}
 	 * notAlone({1, 2, 3, 2, 5, 2}, 2) → {1, 3, 3, 5, 5, 2}
 	 * notAlone({3, 4}, 3) → {3, 4}
-	 * 
+	 *
 	 * notAlone({1, 3, 1, 2}, 1) → {1, 3, 3, 2}
 	 * notAlone({7, 1, 6}, 1) → {7, 7, 6}
 	 * notAlone({1, 1, 1, 2}, 1) → {1, 1, 1, 2}
@@ -28,7 +61,7 @@ public class Exec {
 		if(nums.length<2) return nums;
 		for(int i=0;i<nums.length;i++){
 			if(nums[i]==val&&i>0&&i<nums.length-1){
-				if(nums[i]!=nums[i+1]&&nums[i]!=nums[i-1]){	
+				if(nums[i]!=nums[i+1]&&nums[i]!=nums[i-1]){
 					nums[i] = Math.max(nums[i-1], nums[i+1]);
 				}
 			}
