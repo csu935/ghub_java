@@ -9,6 +9,36 @@ public class Exec {
   public static void main(String[] args) { }
 
   /*
+   * Return a version of the given array where each zero value in the array
+   *  is replaced by the largest odd value to the right of the zero in the array.
+   *  If there is no odd value to the right of the zero, leave the zero as a zero.
+   *
+   *  zeroMax({0, 5, 0, 3}) → {5, 5, 3, 3}
+   *  zeroMax({0, 4, 0, 3}) → {3, 4, 3, 3}
+   *  zeroMax({0, 1, 0}) → {1, 1, 0}
+   *
+   *  zeroMax({7, 0, 4, 3, 0, 2}) → {7, 3, 4, 3, 0, 2}
+   *  zeroMax({7, 0, 4, 3, 0, 1}) → {7, 3, 4, 3, 1, 1}
+   *  zeroMax({7, 0, 4, 3, 0, 0}) → {7, 3, 4, 3, 0, 0}
+   */
+  public int[] zeroMax(int[] nums) {
+    for(int i=0;i<nums.length;i++){
+      if(nums[i]== 0){
+        // zero
+        int maxOdd = 0;
+        for(int j=0;j<nums.length-i;j++){
+          if(nums[i+j]%2!=0){
+            maxOdd = Math.max(maxOdd, nums[i+j]);
+          }
+        }
+        // replace here
+        nums[i]=maxOdd;
+      }
+    }
+    return nums;
+  }
+
+  /*
    * Return a version of the given array where all the 10's have been removed.
    * The remaining elements should shift left towards the start of the array as needed,
    * and the empty spaces a the end of the array should be 0.
