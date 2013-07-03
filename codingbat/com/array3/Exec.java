@@ -9,6 +9,61 @@ public class Exec {
   public static void main(String[] args) { }
 
   /*
+   * Given a non-empty array, return true
+   * if there is a place to split the array
+   * so that the sum of the numbers on one side
+   * is equal to the sum of the numbers on the other side.
+   *
+   * canBalance({1, 1, 1, 2, 1}) → true
+   * canBalance({2, 1, 1, 2, 1}) → false
+   * canBalance({10, 10}) → true
+   *
+   */
+  public boolean canBalance(int[] nums) {
+    if(nums.length<2) return false;
+
+    int i =0;
+    int j = 0;
+    int len = nums.length;
+
+    boolean toEnd = true;
+    boolean toFront = true;
+
+    int sumHead = 0;
+    int sumTail = 0;
+
+    while(i+j<len){
+      int k = len-j-1;
+
+      if(toEnd&&i<=k){
+        sumHead += nums[i];
+      }
+
+      if(toFront&&k>i){
+        sumTail += nums[k];
+      }
+
+      // Stop adding the value
+      // using flag..
+      if(sumHead>sumTail){
+        toEnd = false;
+        toFront = true;
+        j++;
+      }else if(sumHead<sumTail){
+        toFront = false;
+        toEnd = true;
+        i++;
+      }else{
+        toFront=toEnd=true;
+        i++;
+        j++;
+      }
+
+    }
+
+    return sumHead==sumTail;
+  }
+  /*
    * (This is a slightly harder version of the fix34 problem.)
    * Return an array that contains exactly the same numbers
    * as the given array, but rearranged so that every 4 is immediately
