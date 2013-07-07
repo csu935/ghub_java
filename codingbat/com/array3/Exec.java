@@ -51,9 +51,11 @@ public class Exec {
         while(end-head>=n){
 
           if(nums[head+n]==nums[end-n]){
+            // update max value
             sequence = Math.max(sequence, n+1);
             n++;
           }else{
+            // stop this looping
             if(len-(head+sequence)<=sequence) stopRangeSearch=true;
             break;
           }
@@ -61,13 +63,16 @@ public class Exec {
 
         // set head and end
         if(end-(head+n)+1>sequence){
+          // use the same 'head' value and makes the range small
           end--;
         }else{
+          // go to next 'head' value and initialize 'end' value here.
           head++;
           end = len - 1;
         }
 
       }else{
+        
         if(end==head+1){
           head++;
           end = len - 1;
