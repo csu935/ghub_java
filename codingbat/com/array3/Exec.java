@@ -33,6 +33,13 @@ public class Exec {
    * maxMirror({5, 9, 1, 6, 5, 4, 1, 9, 5}) → 3
    */
   public int maxMirror(int[] nums) {
+    /* 戦略は
+      1. 検索範囲を抽出(外ループ)
+         1. 抽出範囲を順次狭めていく
+         2. 最大値によってはそれ以上範囲抽出を行わない
+      2. 範囲を用い、インクリメントしながら先頭と後からの同値が続くカウントを計算する。(中側ループ)
+         1. 範囲を順次狭めていき、同値にならない場合の処理を決める
+    */
     int len = nums.length;
     if(len<2) return len;
     int sequence = 0;
@@ -72,7 +79,7 @@ public class Exec {
         }
 
       }else{
-        
+
         if(end==head+1){
           head++;
           end = len - 1;
@@ -89,6 +96,44 @@ public class Exec {
     }
 
     return sequence;
+  }
+
+  /*
+   * Given two arrays of ints sorted in increasing order,
+   * outer and inner, return true if all of the numbers
+   * in inner appear in outer. The best solution makes only a single "linear"
+   * pass of both arrays, taking advantage of the fact
+   * that both arrays are already in sorted order.
+   *
+   * linearIn({1, 2, 4, 6}, {2, 4}) → true
+   * linearIn({1, 2, 4, 6}, {2, 3, 4}) → false
+   * linearIn({1, 2, 4, 4, 6}, {2, 4}) → true
+   *
+   * linearIn({2, 2, 4, 4, 6, 6}, {2, 4}) → true
+   * linearIn({2, 2, 2, 2, 4}, {2, 4}) → true
+   * linearIn({1, 2, 3}, {-1}) → false
+   * linearIn({1, 2, 3}, {}) → true
+   * linearIn({-1, 0, 3, 3, 3, 10, 12}, {-1, 0, 3, 12}) → true
+   */
+  public boolean linearIn(int[] outer, int[] inner) {
+    // the length of the inner is zero
+    if(inner.length==0) return true;
+    // the smallest value of inner is less than the smallest value of outer
+    if(inner[0]<outer[0]) return false;
+
+    int i = 0;
+    int matched = 0;
+    int len = outer.length;
+
+    while(i<len){
+      if(outer[i]==inner[matched]){
+        if(matched<inner.length) matched++;
+        if(matched>=inner.length) break;
+      }
+      i++;
+    }
+    //DeOut.disp("total="+matched+" length="+inner.length);
+    return matched==inner.length;
   }
 
   /*
