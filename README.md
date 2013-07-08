@@ -3,5 +3,5 @@
 ### Codingbat solution code with Java -
 #### Array3
 <p>canBalance</p>
-![samle1](https://github.com/marsbarmania/ghub_java/blob/master/images/canBalance.png "sample1")
-![samle2](https://github.com/marsbarmania/ghub_java/blob/master/images/canBalance2.png "sample2")
+![samle1](http://i.imgur.com/t6YOqm1.png "sample1")
+![samle2](http://imgur.com/jdNcuQy "sample2")
