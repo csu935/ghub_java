@@ -8,7 +8,48 @@ public class Exec {
    */
   public static void main(String[] args) { }
 
-    /*
+  /*
+   * Say that a "clump" in an array is a series of 2 or more
+   * adjacent elements of the same value. Return the number
+   * of clumps in the given array.
+   *
+   * countClumps({1, 2, 2, 3, 4, 4}) → 2
+   * countClumps({1, 1, 2, 1, 1}) → 2
+   * countClumps({1, 1, 1, 1, 1}) → 1
+   */
+  public int countClumps(int[] nums) {
+    if(nums.length<2) return 0;
+
+    // clumping count
+    int found = 0;
+    // check start clumping or not
+    boolean hasStarted = false;
+
+    for(int i=0;i<nums.length-1;++i){
+
+      // Check if whether the next value is the same or not
+      // if its the result is true , clumping now
+      if(!hasStarted &&
+          nums[i]==nums[i+1]){
+        hasStarted = true;
+      }else{
+        hasStarted = false;
+      }
+
+      if(i==0){
+        if(hasStarted) found++;
+      }else{
+        if(hasStarted
+            && nums[i]!=nums[i-1]){
+          // Check if whether the same clumping or not
+          found++;
+        }
+      }
+    }
+    return found;
+  }
+
+  /*
    * We'll say that a "mirror" section in an array is a group of contiguous elements
    * such that somewhere in the array, the same group appears in reverse order.
    * For example, the largest mirror section
