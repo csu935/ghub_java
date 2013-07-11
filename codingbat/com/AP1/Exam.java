@@ -8,6 +8,40 @@ public class Exam {
   public static void main(String[] args) { }
 
   /*
+   * We'll say that a positive int divides itself
+   * if every digit in the number divides into the number evenly.
+   * So for example 128 divides itself since 1, 2, and 8 all divide into 128 evenly.
+   * We'll say that 0 does not divide into anything evenly,
+   * so no number with a 0 digit divides itself.
+   * Note: use % to get the rightmost digit, and / to discard the rightmost digit.
+   *
+   * dividesSelf(128) → true
+   * dividesSelf(12) → true
+   * dividesSelf(120) → false
+   * -----
+   * dividesSelf(120) → false
+   * dividesSelf(13) → false
+   * dividesSelf(32) → false
+   * dividesSelf(22) → true
+   * dividesSelf(42) → false
+   * dividesSelf(212) → true
+   * dividesSelf(213) → false
+   * dividesSelf(162) → true
+   *
+   */
+  public boolean dividesSelf(int n) {
+    int len = String.valueOf(n).length();
+    int copied = n;
+    for(int i=0;i<len;i++){
+      // if copied == 0 return false
+      if(i==0 && copied % 10==0) return false;
+      if(n % (copied % 10) != 0) return false;
+      copied /= 10;
+    }
+    return true;
+  }
+
+  /*
    * Given a positive int n, return true if it contains a 1 digit.
    * Note: use % to get the rightmost digit, and / to discard the rightmost digit.
    *
