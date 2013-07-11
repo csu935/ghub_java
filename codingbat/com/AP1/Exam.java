@@ -8,6 +8,24 @@ public class Exam {
   public static void main(String[] args) { }
 
   /*
+   * Given a positive int n, return true if it contains a 1 digit.
+   * Note: use % to get the rightmost digit, and / to discard the rightmost digit.
+   *
+   * hasOne(10) → true
+   * hasOne(22) → false
+   * hasOne(220) → false
+   */
+  public boolean hasOne(int n) {
+    // n's length
+    int len = String.valueOf(n).length();
+    for(int i=0;i<len;i++){
+      if(n % 10 == 1) return true;
+      else n /= 10;
+    }
+    return false;
+  }
+
+  /*
    * Given an array of strings, return a new List (e.g. an ArrayList)
    * where all the strings of the given length are omitted.
    * See wordsWithout() below which is more difficult because it uses arrays.
