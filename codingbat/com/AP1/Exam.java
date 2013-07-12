@@ -8,6 +8,31 @@ public class Exam {
   public static void main(String[] args) { }
 
   /*
+   * We have an array of heights, representing the altitude along a walking trail.
+   * Given start/end indexes into the array,
+   * return the sum of the changes for a walk beginning
+   * at the start index and ending at the end index. For example,
+   * with the heights {5, 3, 6, 7, 2} and start=2, end=4 yields a sum of 1 + 5 = 6.
+   * The start end end index will both be valid indexes
+   * into the array with start <= end.
+   *
+   * sumHeights({5, 3, 6, 7, 2}, 2, 4) → 6
+   * sumHeights({5, 3, 6, 7, 2}, 0, 1) → 2
+   * sumHeights({5, 3, 6, 7, 2}, 0, 4) → 11
+   */
+  public int sumHeights(int[] heights, int start, int end) {
+    // loop count
+    int count = end - start;
+    int sum = 0;
+
+    for(int i=0;i<count;i++){
+      // get difference 2 values
+      sum += Math.abs(heights[start+i]-heights[start+i+1]);
+    }
+    return sum;
+  }
+
+  /*
    * Given two arrays, A and B, of non-negative int scores.
    * A "special" score is one which is a multiple of 10, such as 40 or 90.
    * Return the sum of largest special score in A and the largest special score in B.
