@@ -8,6 +8,64 @@ public class Exam {
   public static void main(String[] args) { }
 
   /*
+   * Start with two arrays of strings, A and B,
+   * each with its elements in alphabetical order and without duplicates.
+   * Return a new array containing the first N elements from the two arrays.
+   * The result array should be in alphabetical order and without duplicates.
+   * A and B will both have a length which is N or more.
+   * The best "linear" solution makes a single pass over A and B,
+   * taking advantage of the fact that they are in alphabetical order,
+   * copying elements directly to the new array.
+   *
+   * mergeTwo({"a", "c", "z"}, {"b", "f", "z"}, 3) → {"a", "b", "c"}
+   * mergeTwo({"a", "c", "z"}, {"c", "f", "z"}, 3) → {"a", "c", "f"}
+   * mergeTwo({"f", "g", "z"}, {"c", "f", "g"}, 3) → {"c", "f", "g"}
+   *
+   * compareTo(str) は、文字列が、str と比べて辞書的にどちらが大きいか調べます。
+   * str のほうが大きい時は負の値を、等しい時は 0を、小さい時は正の値を返します。
+   */
+  public String[] mergeTwo(String[] a, String[] b, int n) {
+    String[] sorted = new String[n];
+    int fix = 0;
+    int len = a.length + b.length;
+
+    while(fix < n){
+      int i =0;
+      // target index fixed temporarily
+      sorted[fix] = a[fix];
+      // start finding proper NEXT value
+      while(i<len){
+        if(i<a.length){
+          if(fix==0){
+            if(a[i].compareTo(sorted[fix])<0){
+              sorted[fix] = a[i];
+            }
+          }else{
+            if(a[i].compareTo(sorted[fix])<0 &&
+                a[i].compareTo(sorted[fix-1])>0){
+              sorted[fix] = a[i];
+            }
+          }
+        }else{
+          if(fix==0 && i>=a.length){
+            if(b[i-a.length].compareTo(sorted[fix])<0){
+              sorted[fix] = b[i-a.length];
+            }
+          }else{
+            if(b[i-a.length].compareTo(sorted[fix])<0 &&
+                b[i-a.length].compareTo(sorted[fix-1])>0){
+              sorted[fix] = b[i-a.length];
+            }
+          }
+        }
+        i++;
+      }
+      fix++;
+    }
+    return sorted;
+  }
+
+  /*
    * We have data for two users, A and B, each with a String name
    * and an int id. The goal is to order the users such as for sorting.
    * Return -1 if A comes before B, 1 if A comes after B, and 0
