@@ -1,6 +1,8 @@
 ### Java code
 
 ### Codingbat solution code with Java -
+#### solution memo MergeTwo
+![mergeTwo](http://i.imgur.com/tPY7Q1Q.png,"memo")
 #### My memo for Array3's Problems
 <p>[ canBalance ]</p>
 ![samle1](http://i.imgur.com/jdNcuQy.png "sample1")
