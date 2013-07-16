@@ -8,6 +8,60 @@ public class Exam {
   public static void main(String[] args) { }
 
   /*
+   * Start with two arrays of strings, a and b, each in alphabetical order,
+   * possibly with duplicates. Return the count of the number of strings
+   * which appear in both arrays. The best "linear" solution makes a single pass over
+   * both arrays, taking advantage of the fact that they are in alphabetical order.
+   *
+   * commonTwo({"a", "c", "x"}, {"b", "c", "d", "x"}) → 2
+   * commonTwo({"a", "c", "x"}, {"a", "b", "c", "x", "z"}) → 3
+   * commonTwo({"a", "b", "c"}, {"a", "b", "c"}) → 3
+   *
+   * commonTwo({"a", "a", "b", "b", "c"}, {"a", "b", "c"}) → 3
+   * commonTwo({"a", "a", "b", "b", "c"}, {"a", "b", "b", "b", "c"}) → 3
+   * commonTwo({"a", "a", "b", "b", "c"}, {"a", "b", "b", "c", "c"}) → 3
+   *
+   * commonTwo({"b", "b", "b", "b", "c"}, {"a", "b", "b", "b", "c"}) → 2
+   * commonTwo({"a", "b", "c", "c", "d"}, {"a", "b", "b", "c", "d", "d"}) → 4
+   * commonTwo({"a", "a", "b", "b", "c"}, {"b", "b", "b"}) → 1
+   *
+   * commonTwo({"a", "a", "b", "b", "c"}, {"c", "c"}) → 1
+   * commonTwo({"a", "a", "b", "b", "c"}, {"b", "b", "b", "x"}) → 1
+   * commonTwo({"a", "a", "b", "b", "c"}, {"b", "b"}) → 1
+   *
+   */
+  public int commonTwo(String[] a, String[] b) {
+    int count = 0;
+    int i = 0;
+    while(i<a.length){
+      String currentAStr = a[i];
+      int k = 0;
+      if(i==0){
+        while(k<b.length){
+          // exclusive to previous element if it's duplicative
+          if((k==0 && currentAStr.compareTo(b[k])==0) ||
+              k>0 && b[k].compareTo(b[k-1])!=0 && currentAStr.compareTo(b[k])==0){
+            count++;
+          }
+          k++;
+        }
+      }else if(i>0 && currentAStr.compareTo(a[i-1])!=0){
+        // exclusive to previous element if it's duplicative
+        while(k<b.length){
+          if((k==0 && currentAStr.compareTo(b[k])==0) ||
+              k>0 && b[k].compareTo(b[k-1])!=0 && currentAStr.compareTo(b[k])==0){
+            count++;
+          }
+          k++;
+        }
+      }
+
+      i++;
+    }
+    return count;
+  }
+
+  /*
    * Start with two arrays of strings, A and B,
    * each with its elements in alphabetical order and without duplicates.
    * Return a new array containing the first N elements from the two arrays.
