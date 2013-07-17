@@ -1,5 +1,3 @@
-### Java code
-
 ### Codingbat solution code with Java -
 #### solution memo MergeTwo
 ![mergeTwo](http://i.imgur.com/tPY7Q1Q.png,"memo")
