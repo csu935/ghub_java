@@ -7,6 +7,36 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a non-negative int n, compute recursively (no loops)
+   * the count of the occurrences of 8 as a digit,
+   * except that an 8 with another 8 immediately to its left counts double,
+   * so 8818 yields 4. Note that mod (%) by 10 yields the rightmost digit
+   * (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit
+   * (126 / 10 is 12).
+   *
+   * count8(8) → 1
+   * count8(818) → 2
+   * count8(8818) → 4
+   */
+  public int count8(int n) {
+    int count = 0;
+    if(n/10==0){
+      if(n==8) count += 1;
+    }else{
+      if(n%10==8){
+        if((n/10)%10==8){
+          count += 2 + count8(n/10);
+        }else{
+          count += 1 + count8(n/10);
+        }
+      }else{
+        count += count8(n/10);
+      }
+    }
+    return count;
+  }
+
+  /*
    * Given a non-negative int n, return the count of the occurrences of 7 as a digit,
    * so for example 717 yields 2. (no loops).
    * Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6),
