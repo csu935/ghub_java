@@ -7,6 +7,31 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+    * Given a string, compute recursively (no loops) the number
+    * of lowercase 'x' chars in the string.
+    *
+    * countX("xxhixx") → 4
+    * countX("xhixhix") → 3
+    * countX("hi") → 0
+    */
+  public int countX(String str) {
+    // considered str.length()==0
+    if(str.length()==0) return 0;
+    int xcount = 0;
+    if(str.length()==1){
+      if(str.equals("x")) xcount += 1;
+    }else{
+      String s = str.substring(0,str.length());
+      if(s.substring(s.length()-1,s.length()).equals("x")){
+        xcount += 1 + countX(s.substring(0, s.length()-1));
+      }else{
+        xcount += countX(s.substring(0,s.length()-1));
+      }
+    }
+    return xcount;
+  }
+
+  /*
    * Given base and n that are both 1 or more, compute recursively (no loops)
    * the value of base to the n power, so powerN(3, 2) is 9 (3 squared).
    *
