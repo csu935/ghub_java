@@ -7,6 +7,42 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, compute recursively (no loops)
+   * the number of times lowercase "hi" appears in the string.
+   *
+   * countHi("xxhixx") → 1
+   * countHi("xhixhix") → 2
+   * countHi("hi") → 1
+   */
+  public int countHi(String str) {
+    if(str.length()<2) return 0;
+    int hicount = 0;
+    if(str.length()==2){
+      if(str.equals("hi")) hicount = 1;
+    }else{
+
+      if(str.substring(str.length()-2).equals("hi")){
+        hicount = 1 + countHi(str.substring(0,str.length()-1));
+      }else{
+        hicount = countHi(str.substring(0,str.length()-1));
+      }
+    }
+    return hicount;
+  }
+
+  /*
+   * Solution: countHi
+   */
+  /*
+  public int countHi(String str) {
+    if (str.length() <= 1) return 0;
+    int count = 0;
+    if (str.substring(0, 2).equals("hi")) count = 1;  // could use startsWith()
+    return count + countHi(str.substring(1));
+  }
+  */
+
+  /*
     * Given a string, compute recursively (no loops) the number
     * of lowercase 'x' chars in the string.
     *
@@ -15,17 +51,17 @@ public class Exam {
     * countX("hi") → 0
     */
   public int countX(String str) {
-    // considered str.length()==0
+    // considered the case of "str.length()==0"
     if(str.length()==0) return 0;
     int xcount = 0;
     if(str.length()==1){
-      if(str.equals("x")) xcount += 1;
+      if(str.equals("x")) xcount = 1;
     }else{
       String s = str.substring(0,str.length());
       if(s.substring(s.length()-1,s.length()).equals("x")){
-        xcount += 1 + countX(s.substring(0, s.length()-1));
+        xcount = 1 + countX(s.substring(0, s.length()-1));
       }else{
-        xcount += countX(s.substring(0,s.length()-1));
+        xcount = countX(s.substring(0,s.length()-1));
       }
     }
     return xcount;
@@ -66,16 +102,16 @@ public class Exam {
   public int count8(int n) {
     int count = 0;
     if(n/10==0){
-      if(n==8) count += 1;
+      if(n==8) count = 1;
     }else{
       if(n%10==8){
         if((n/10)%10==8){
-          count += 2 + count8(n/10);
+          count = 2 + count8(n/10);
         }else{
-          count += 1 + count8(n/10);
+          count = 1 + count8(n/10);
         }
       }else{
-        count += count8(n/10);
+        count = count8(n/10);
       }
     }
     return count;
@@ -95,11 +131,11 @@ public class Exam {
     int count = 0;
     if(n/10==0){
       // rightmost is '7'
-      if(n==7) count += 1;
+      if(n==7) count = 1;
     }else{
       // recursively
-      if(n % 10 == 7) count += 1 + count7(n/10);
-      else  count += count7(n/10);
+      if(n % 10 == 7) count = 1 + count7(n/10);
+      else  count = count7(n/10);
     }
     return count;
   }
