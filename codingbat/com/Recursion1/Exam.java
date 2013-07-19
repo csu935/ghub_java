@@ -7,6 +7,24 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, compute recursively (no loops) a new string
+   * where all the lowercase 'x' chars have been changed to 'y' chars.
+   *
+   *
+   * changeXY("codex") → "codey"
+   * changeXY("xxhixx") → "yyhiyy"
+   * changeXY("xhixhix") → "yhiyhiy"
+   */
+  public String changeXY(String str) {
+    if(str.length()==0) return str;
+    String s = "";
+    if(str.substring(0,1).equals("x")) s = "y";
+    else s = str.substring(0,1);
+    // remove first character
+    return s + changeXY(str.substring(1));
+  }
+
+  /*
    * Given a string, compute recursively (no loops)
    * the number of times lowercase "hi" appears in the string.
    *
