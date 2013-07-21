@@ -7,6 +7,23 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, compute recursively a new string
+   * where all the 'x' chars have been removed.
+   *
+   * noX("xaxb") → "ab"
+   * noX("abc") → "abc"
+   * noX("xx") → ""
+   */
+  public String noX(String str) {
+    if(str.length()==0) return str;
+    String nox = "";
+    if(!str.substring(0,1).equals("x")){
+      nox += str.substring(0, 1);
+    }
+    return nox + noX(str.substring(1));
+  }
+
+  /*
    * Given a string, compute recursively (no loops)
    * a new string where all appearances of "pi" have been
    * replaced by "3.14".
