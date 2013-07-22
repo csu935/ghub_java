@@ -8,6 +8,34 @@ public class Exam {
 
   /*
    * Given a string, compute recursively a new string
+   * where all the lowercase 'x' chars have been moved to the end of
+   * the string.
+   *
+   * endX("xxre") → "rexx"
+   * endX("xxhixx") → "hixxxx"
+   * endX("xhixhix") → "hihixxx"
+   */
+  public String endX(String str) {
+    String s = "";
+    boolean isX = false;
+    int index = 0;
+    if(index<str.length()){
+      if(str.startsWith("x")){
+        isX = true;
+      }else{
+        s = str.substring(index, index+1);
+      }
+      index++;
+      return (isX)? s + endX(str.substring(1))+"x":s + endX(str.substring(1));
+
+    }else{
+      return str;
+    }
+
+  }
+
+  /*
+   * Given a string, compute recursively a new string
    * where identical chars that are adjacent
    * in the original string are separated from each other by a "*".
    *
