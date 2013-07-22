@@ -7,6 +7,27 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, compute recursively a new string
+   * where all the adjacent chars are now separated by a "*".
+   *
+   * allStar("hello") → "h*e*l*l*o"
+   * allStar("abc") → "a*b*c"
+   * allStar("ab") → "a*b"
+   */
+  public String allStar(String str) {
+    String s = "";
+    int index = 0;
+    if(index<str.length()){
+      s = (index<str.length()-1) ? str.substring(index,index+1) + "*" :
+        str.substring(index,index+1);
+      index++;
+      return s + allStar(str.substring(1));
+    }else{
+      return str;
+    }
+  }
+
+  /*
    * Given an array of ints, compute recursively
    * if the array contains somewhere a value followed in the array
    * by that value times 10.
