@@ -7,6 +7,28 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Count recursively the total number of "abc"
+   * and "aba" substrings that appear in the given string.
+   *
+   * countAbc("abc") → 1
+   * countAbc("abcxxabc") → 2
+   * countAbc("abaxxaba") → 2
+   */
+  public int countAbc(String str) {
+    if(str.length()<3) return 0;
+    int count = 0;
+    int index = 0;
+    if(index<str.length()-2){
+      String s = str.substring(index, index+3);
+      if(s.equals("abc") || s.equals("aba")) count++;
+      index++;
+      return count + countAbc(str.substring(1));
+    }else{
+      return count;
+    }
+  }
+
+  /*
    * We'll say that a "pair" in a string is two instances of a char separated by a char.
    * So "AxA" the A's make a pair. Pair's can overlap,
    * so "AxAxA" contains 3 pairs -- 2 for A and 1 for x.
