@@ -8,6 +8,31 @@ public class Exam {
 
   /*
    * Given a string, compute recursively a new string
+   * where identical chars that are adjacent
+   * in the original string are separated from each other by a "*".
+   *
+   * pairStar("hello") → "hel*lo"
+   * pairStar("xxyy") → "x*xy*y"
+   * pairStar("aaaa") → "a*a*a*a"
+   */
+  public String pairStar(String str) {
+    String s = "";
+    int index = 0;
+    if(index<str.length()-1){
+      if(str.substring(index, index+1).equals(str.substring(index+1, index+2))){
+        s = str.substring(index, index+1)+"*";
+      }else{
+        s = str.substring(index, index+1);
+      }
+      index++;
+      return s + pairStar(str.substring(1));
+    }else{
+      return str;
+    }
+  }
+
+  /*
+   * Given a string, compute recursively a new string
    * where all the adjacent chars are now separated by a "*".
    *
    * allStar("hello") → "h*e*l*l*o"
