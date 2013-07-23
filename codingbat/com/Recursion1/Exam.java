@@ -7,6 +7,29 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, return recursively a "cleaned" string
+   * where adjacent chars that are the same have been reduced
+   * to a single char. So "yyzzza" yields "yza".
+   *
+   * stringClean("yyzzza") → "yza"
+   * stringClean("abbbcdd") → "abcd"
+   * stringClean("Hello") → "Helo"
+   */
+  public String stringClean(String str) {
+    String s = "";
+    int index = 0;
+    if(index < str.length()-1){
+      if(!str.substring(index,index+1).equals(str.substring(index+1,index+2))){
+        s = str.substring(index,index+1);
+      }
+      index++;
+      return s + stringClean(str.substring(1));
+    }else{
+      return str;
+    }
+  }
+
+  /*
    * Given a string, compute recursively (no loops) the number of "11" substrings
    * in the string. The "11" substrings should not overlap.
    *
