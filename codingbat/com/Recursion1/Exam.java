@@ -7,6 +7,30 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, compute recursively (no loops) the number of "11" substrings
+   * in the string. The "11" substrings should not overlap.
+   *
+   * count11("11abc11") → 2
+   * count11("abc11x11x11") → 3
+   * count11("111") → 1
+   */
+  public int count11(String str) {
+    int count = 0;
+    int index = 0;
+    if(index<str.length()-1){
+      if(str.substring(index,index+2).equals("11")){
+        count++;
+        // forward not to be overlapped
+        index++;
+      }
+      index++;
+      return count + count11(str.substring(index));
+    }else{
+      return count;
+    }
+  }
+
+  /*
    * Count recursively the total number of "abc"
    * and "aba" substrings that appear in the given string.
    *
