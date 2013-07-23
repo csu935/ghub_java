@@ -22,7 +22,7 @@ public class Exam {
       if(!str.substring(index,index+1).equals(str.substring(index+1,index+2))){
         s = str.substring(index,index+1);
       }
-      index++;
+
       return s + stringClean(str.substring(1));
     }else{
       return str;
@@ -68,7 +68,7 @@ public class Exam {
     if(index<str.length()-2){
       String s = str.substring(index, index+3);
       if(s.equals("abc") || s.equals("aba")) count++;
-      index++;
+
       return count + countAbc(str.substring(1));
     }else{
       return count;
@@ -117,7 +117,7 @@ public class Exam {
       }else{
         s = str.substring(index, index+1);
       }
-      index++;
+
       return (isX)? s + endX(str.substring(1))+"x":s + endX(str.substring(1));
 
     }else{
@@ -144,7 +144,7 @@ public class Exam {
       }else{
         s = str.substring(index, index+1);
       }
-      index++;
+
       return s + pairStar(str.substring(1));
     }else{
       return str;
@@ -165,7 +165,7 @@ public class Exam {
     if(index<str.length()){
       s = (index<str.length()-1) ? str.substring(index,index+1) + "*" :
         str.substring(index,index+1);
-      index++;
+
       return s + allStar(str.substring(1));
     }else{
       return str;
