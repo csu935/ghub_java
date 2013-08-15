@@ -7,6 +7,43 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, compute recursively the number of times
+   * lowercase "hi" appears in the string,
+   * however do not count "hi" that have an 'x' immedately before them.
+   *
+   * countHi2("ahixhi") → 1
+   * countHi2("ahibhi") → 2
+   * countHi2("xhixhi") → 0
+   * countHi2("hi") → 1
+   * countHi2("hixxhi") → 1
+   * countHi2("hixhi") → 1
+   * countHi2("hixhhi") → 2
+   */
+  public int countHi2(String str) {
+    int count = 0;
+    if(str.length()>=3){
+      String three = str.substring(0,3);
+      int index = 0;
+      if(three.startsWith("hi")){
+        // 2文字削除
+        index += 2;
+        count++;
+      }else if(three.endsWith("hi")){
+        if(!three.startsWith("x")) count++;
+        // 3文字分削除
+        index += 3;
+      }else{
+        // 1文字削除
+        index++;
+      }
+      return count + countHi2(str.substring(index));
+    }else{
+      if(str.startsWith("hi")) count++;
+      return count;
+    }
+  }
+
+  /*
    * Given a string, return recursively a "cleaned" string
    * where adjacent chars that are the same have been reduced
    * to a single char. So "yyzzza" yields "yza".
