@@ -8,6 +8,36 @@ public class Exam {
 
   /*
    * Given a string and a non-empty substring sub,
+   * compute recursively the largest substring which
+   * starts and ends with sub and return its length.
+   *
+   * strDist("catcowcat", "cat") → 9
+   * strDist("catcowcat", "cow") → 3
+   * strDist("cccatcowcatxx", "cat") → 9
+   * strDist("xyx", "z") → 0
+   * strDist("x", "z") → 0
+   * strDist("", "z") → 0
+   */
+  public int strDist(String str, String sub) {
+    // 文字数が0の場合、
+    if(str.length()==0) return 0;
+    // 先頭がsubで始まる
+    if(str.startsWith(sub)){
+      // 文字後部がsubと同一の場合
+      if(str.endsWith(sub)){
+        return str.length();
+      }else{
+        // 後ろから1文字削除
+        return strDist(str.substring(0, str.length()-1),sub);
+      }
+    }else{
+      // 前から1文字削除
+      return strDist(str.substring(1),sub);
+    }
+  }
+
+  /*
+   * Given a string and a non-empty substring sub,
    * compute recursively if at least n copies of sub appear
    * in the string somewhere, possibly with overlapping.
    * N will be non-negative.
