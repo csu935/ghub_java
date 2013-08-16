@@ -50,7 +50,7 @@ public class Exam {
     // 文字数が0であれば、再帰的にペアになっていた
     if(str.length()==0) return true;
     if (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') {
-      // 最初の文字と最後の文字で括弧荷なる場合は、再帰的に処理していく
+      // 最初の文字と最後の文字で括弧になる場合は、再帰的に処理していく
       return nestParen(str.substring(1,str.length()-1));
     }else{
       return false;
