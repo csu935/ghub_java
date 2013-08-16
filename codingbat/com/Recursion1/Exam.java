@@ -7,6 +7,37 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string and a non-empty substring sub,
+   * compute recursively the number of times that
+   * sub appears in the string, without the sub strings overlapping.
+   *
+   * strCount("catcowcat", "cat") → 2
+   * strCount("catcowcat", "cow") → 1
+   * strCount("catcowcat", "dog") → 0
+   * strCount("cacatcowcat", "cat") → 2
+   */
+  public int strCount(String str, String sub) {
+    int count = 0;
+    if(str.length()>=str.length()){
+      // subと一致する場合としない場合のsubstringするインデックス位置
+      // デフォルトは1文字
+      int index = 1;
+      if(str.substring(0,sub.length()).equals(sub)){
+        count++;
+        // 一致した場合は、sub文字数ずらす
+        index = sub.length();
+      }
+      String next = str.substring(index);
+      // next文字数がsub文字数より小さい時は、countを返す
+      // それ以外は、続けて処理する。
+      if(next.length() < sub.length()) return count;
+      else return count + strCount(next,sub);
+    }else{
+      return count;
+    }
+  }
+
+  /*
    * Given a string, return true if it is a nesting of zero or
    * more pairs of parenthesis, like "(())" or "((()))".
    * Suggestion: check the first and last chars, and then recur on what's inside them.
