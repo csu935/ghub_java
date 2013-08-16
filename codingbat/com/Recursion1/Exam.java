@@ -7,6 +7,26 @@ public class Exam {
   public static void main(String[] args) { Exam ex = new Exam(); }
 
   /*
+   * Given a string, return true if it is a nesting of zero or
+   * more pairs of parenthesis, like "(())" or "((()))".
+   * Suggestion: check the first and last chars, and then recur on what's inside them.
+   *
+   * nestParen("(())") → true
+   * nestParen("((()))") → true
+   * nestParen("(((x))") → false
+   */
+  public boolean nestParen(String str) {
+    // 文字数が0であれば、再帰的にペアになっていた
+    if(str.length()==0) return true;
+    if (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')') {
+      // 最初の文字と最後の文字で括弧荷なる場合は、再帰的に処理していく
+      return nestParen(str.substring(1,str.length()-1));
+    }else{
+      return false;
+    }
+  }
+
+  /*
    * Given a string that contains a single pair of parenthesis,
    * compute recursively a new string made of only of the parenthesis
    * and their contents, so "xyz(abc)123" yields "(abc)".
@@ -34,6 +54,20 @@ public class Exam {
       // Now the first and last chars are ( .. ) and you're done.
      */
   }
+
+  /*
+   * public String parenBit(String str) {
+    if(str.length()>1){
+      if(str.substring(0,1).equals("(")){
+        return str.substring(0, str.indexOf(")")+1);
+      }else{
+        return parenBit(str.substring(1));
+      }
+    }else{
+      return "";
+    }
+  }
+   */
 
   /*
    * Given a string, compute recursively the number of times
