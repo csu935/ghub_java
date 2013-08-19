@@ -7,6 +7,42 @@ public class Exam {
 
   /*
    * Given an array of ints, is it possible to choose a group of some of the ints,
+   * beginning at the start index, such that the group sums to the given target? However,
+   * with the additional constraint that all 6's must be chosen. (No loops needed.)
+   *
+   * groupSum6(0, {5, 6, 2}, 8) → true
+   * groupSum6(0, {5, 6, 2}, 9) → false
+   * groupSum6(0, {5, 6, 2}, 7) → false
+   * groupSum6(0, {1}, 1) → true
+   * groupSum6(0, {3, 2, 4, 6}, 8) → true
+   * groupSum6(0, {6, 2, 4, 3}, 8) → true
+   * groupSum6(0, {1, 6, 2, 6, 4}, 12) → true
+   * groupSum6(0, {1, 6, 2, 6, 4}, 13) → true
+   * groupSum6(0, {1, 6, 2, 6, 5}, 14) → true
+   * groupSum6(0, {1, 6, 2, 6, 5}, 15) → true
+   *
+   */
+  public boolean groupSum6(int start, int[] nums, int target) {
+    // target==0であれば、true
+    if (start >= nums.length) return (target == 0);
+    // nums[start]==6の場合、target-6して再帰処理
+    if (nums[start]==6) return groupSum6(start+1, nums, target-6);
+    // nums[start]が選ばれた場合の再帰処理：target-nums[start]して、startを1つ進める
+    if (groupSum6(start + 1, nums, target - nums[start])) return true;
+    // nums[start]が選ばれなかった場合の再帰処理：選ばれていないので、startを1つ進める
+    if (groupSum6(start + 1, nums, target)) return true;
+    return false;
+
+    /*
+     *  if (start >= nums.length) return (target == 0);
+      if (groupSum6(start + 1, nums, target - nums[start])) return true;
+      else if (nums[start] != 6 && groupSum6(start + 1, nums, target)) return true;
+      else return false;
+     */
+  }
+
+  /*
+   * Given an array of ints, is it possible to choose a group of some of the ints,
    * such that the group sums to the given target?
    * This is a classic backtracking recursion problem.
    * Once you understand the recursive backtracking strategy in this problem,
